@@ -1,6 +1,7 @@
 CREATE TABLE `parking_iot`.`tb_camera`  (
   `id` char(32) NOT NULL COMMENT '主键',
   `ip` varchar(0) NULL COMMENT '相机IP',
+  `serial_number` varchar(0) NULL COMMENT '设备序列号',
   `rstp_port` varchar(0) NULL COMMENT '相机rstp端口',
   `user` varchar(0) NULL COMMENT '相机登录用户名',
   `password` varchar(0) NULL COMMENT '相机登录密码',
