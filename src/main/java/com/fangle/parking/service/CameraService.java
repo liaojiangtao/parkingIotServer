@@ -30,4 +30,6 @@ public class CameraService {
     public List<Camera> findAll(){
         return cameraDao.findAll();
     }
+
+    public boolean isExist(String ipAddr) { return cameraDao.existsByIp(); }
 }

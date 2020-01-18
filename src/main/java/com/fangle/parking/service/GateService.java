@@ -38,4 +38,6 @@ public class GateService {
     public Gate findByAuxiliaryCameraId(String cameraId){
         return gateDao.findGateByAuxiliaryCameraId(cameraId);
     }
+
+    public Gate findBindGate(String ipAddr) {  }
 }

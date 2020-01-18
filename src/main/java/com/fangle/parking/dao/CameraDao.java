@@ -15,4 +15,6 @@ public interface CameraDao extends JpaRepository<Camera, String> {
      * @return
      */
     public Camera findByIp(String ip);
+
+    boolean existsByIp();
 }

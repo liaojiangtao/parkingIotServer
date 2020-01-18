@@ -3,9 +3,15 @@ package com.fangle.parking.service;
 import com.alibaba.fastjson.JSON;
 import com.fangle.parking.bo.ResponseAlarmInfoPlateBo;
 import com.fangle.parking.bo.VzCameraResponseBo;
+import com.fangle.parking.entity.Gate;
+import com.fangle.parking.entity.ParkingOrder;
 import com.fangle.parking.vo.TriggerResultVo;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.sql.rowset.serial.SerialException;
 
 /**
  * @author Gentel
@@ -15,7 +21,17 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
+@Transactional(rollbackFor = SerialException.class)
 public class ParkingService {
+
+    @Autowired
+    private GateService gateService;
+
+    @Autowired
+    private OrderService orderService;
+
+    @Autowired
+    private CameraService cameraService;
 
     /**
      * 心跳处理
@@ -47,6 +63,15 @@ public class ParkingService {
         log.info(JSON.toJSONString(vo));
         log.info("****************");
 
+        // 1.判断相机是否存在
+        if (!cameraService.isExist(vo.getAlarmInfoPlate().getIpAddr())){
+
+        }
+
+        // 2.判断相机是否绑定了出入口
+        Gate gate = gateService.findBindGate(vo.getAlarmInfoPlate().getIpAddr());
+
+
         ResponseAlarmInfoPlateBo responseAlarmInfoPlate = new ResponseAlarmInfoPlateBo();
         responseAlarmInfoPlate.setContent("...");
         responseAlarmInfoPlate.setInfo("ok");
@@ -54,5 +79,9 @@ public class ParkingService {
         bo.setResponseAlarmInfoPlate(responseAlarmInfoPlate);
 
         return bo;
+    }
+
+    public void createParkingOrder(ParkingOrder order){
+
     }
 }
