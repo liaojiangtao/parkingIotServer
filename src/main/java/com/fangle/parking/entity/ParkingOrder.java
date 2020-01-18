@@ -14,8 +14,8 @@ import java.util.Date;
 
 /**
  * @author Gentel
- * @description 出入口
- * @create 2020-01-18 15:07
+ * @description 停车场订单
+ * @create 2020-01-18 16:19
  */
 
 @Data
@@ -23,18 +23,29 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "tb_gate")
+@Table(name = "tb_parking_order")
 @EntityListeners(AuditingEntityListener.class)
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
-public class Gate {
+public class ParkingOrder {
     @Id
     @GeneratedValue(generator = "jpa-uuid")
     @Column(length = 32)
     private String id;
-    private String name;
-    private String mainCameraId;
-    private String auxiliaryCameraId;
-    private Integer type;
+    private String orderCode;
+    private String numberPlate;
+    private Date arriveTime;
+    private String arriveGateId;
+    private String arriveGateName;
+    private Integer arriveType;
+    private Date leaveTime;
+    private String leaveGateId;
+    private String leaveGateName;
+    private Integer leaveType;
+    private String tollId;
+    private String tollName;
+    private Long totalFee;
+    private Long payFee;
+    private Integer status;
 
     @LastModifiedDate
     private Date updateTime;
