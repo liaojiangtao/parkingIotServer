@@ -1,2 +1,31 @@
 server:
   port: 9512
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://47.98.111.83:3306/parking_iot?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123456
+    # 使用druid连接池
+    type: com.alibaba.druid.pool.DruidDataSource
+    # 配置druid连接池
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 30000
+    filters: stat
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+    sql-script-encoding: utf-8
+
+  ##Jpa配置
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true

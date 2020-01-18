@@ -21,14 +21,17 @@ public class ResponseAlarmInfoPlateBo {
     private String content;
     private String isPay;
     private Integer plateId;
+
     /**
      * 回复开闸端口号，若无，则默认为 0
      */
     private Integer channelNum;
+
     /**
      * 回复 ok 进行手动触发
      */
     private String manualTigger;
+
     @JsonProperty(value = "info")
     public String getInfo() {
         return info;
